@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Campus Voice — campus announcements in one place.">
+  <title>Campus Voice | One campus. One voice.</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Campus Voice home">
+      <span class="brand-mark" aria-hidden="true"><span class="brand-mark-letter">C</span><span class="brand-mark-spark">✦</span></span>
+      <span class="brand-copy">
+        <span class="brand-name">Campus Voice</span>
+        <span class="brand-tagline">One campus. One voice.</span>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="true">
+        <span class="theme-toggle-icon" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Light mode</span>
+      </button>
+      <button class="button button-primary" id="newAnnouncementBtn" type="button">
+        <span class="button-icon" aria-hidden="true"></span> New Announcement
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">check whats new</p>
+      <h1>What's happening on campus?</h1>
+      <p class="hero-subtitle">Stay updated with the latest announcements.</p>
+    </section>
+
+    <section class="announcements-section" aria-labelledby="announcementsHeading">
+      <div class="section-top">
+        <div>
+          <h2 id="announcementsHeading">Latest announcements</h2>
+          <p class="section-description">Everything important, all in one place.</p>
+        </div>
+        <span class="announcement-count" id="announcementCount">10 announcements</span>
+      </div>
+
+      <div class="announcement-tools">
+        <label class="search-field" for="announcementSearch">
+          <span class="search-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Search announcements</span>
+          <input id="announcementSearch" type="search" placeholder="Search announcements..." autocomplete="off">
+        </label>
+        <label class="filter-field" for="categoryFilter">
+          <span class="field-label"><span class="filter-icon" aria-hidden="true"></span>Filter</span>
+          <select id="categoryFilter">
+            <option value="All">All categories</option>
+            <option value="Academic">Academic</option>
+            <option value="Events">Events</option>
+            <option value="Placement">Placement</option>
+          </select>
+        </label>
+        <label class="filter-field" for="announcementSort">
+          <span class="field-label"><span class="sort-icon" aria-hidden="true"></span>Sort</span>
+          <select id="announcementSort">
+            <option value="views">Most viewed</option>
+            <option value="latest">Latest</option>
+          </select>
+        </label>
+      </div>
+
+      <nav class="category-tabs" aria-label="Filter announcements by category">
+        <button class="category-tab active" type="button" data-category="All" aria-pressed="true">All</button>
+        <button class="category-tab" type="button" data-category="Academic" aria-pressed="false">Academic</button>
+        <button class="category-tab" type="button" data-category="Events" aria-pressed="false">Events</button>
+        <button class="category-tab" type="button" data-category="Placement" aria-pressed="false">Placement</button>
+      </nav>
+
+      <div class="announcement-grid" id="announcementList" aria-live="polite"></div>
+      <p class="empty-state hidden" id="emptyState"><span class="empty-icon" aria-hidden="true">✦</span><strong>No announcements found</strong><span>Try a different search or category filter.</span></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Campus Voice <span aria-hidden="true">·</span> One campus. One voice.</p>
+  </footer>
+
+  <dialog class="announcement-dialog" id="announcementDialog" aria-labelledby="formTitle">
+    <div class="dialog-header">
+      <div>
+        <p class="eyebrow">SHARE AN UPDATE</p>
+        <h2 id="formTitle">New announcement</h2>
+      </div>
+      <button class="icon-button" id="closeDialogBtn" type="button" aria-label="Close form"><span aria-hidden="true">×</span></button>
+    </div>
+
+    <form id="announcementForm">
+      <label for="announcementCategory">Category</label>
+      <select id="announcementCategory" name="category" required>
+        <option value="Academic">Academic</option>
+        <option value="Events">Events</option>
+        <option value="Placement">Placement</option>
+      </select>
+
+      <label for="announcementTitle">Announcement title</label>
+      <input id="announcementTitle" name="title" type="text" maxlength="90" placeholder="e.g. Internal Assessment Schedule" required>
+
+      <label for="announcementDescription">Description</label>
+      <textarea id="announcementDescription" name="description" rows="4" maxlength="400" placeholder="Share the important details..." required></textarea>
+
+      <div class="form-row">
+        <div>
+          <label for="announcementDate">Date</label>
+          <input id="announcementDate" name="date" type="date" required>
+        </div>
+        <div>
+          <label for="announcementTime">Time</label>
+          <input id="announcementTime" name="time" type="time" required>
+        </div>
+      </div>
+
+      <p class="form-note">Announcements are saved in this browser using localStorage.</p>
+      <div class="dialog-actions">
+        <button class="button button-secondary" id="cancelBtn" type="button">Cancel</button>
+        <button class="button button-primary" type="submit">Publish announcement</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
